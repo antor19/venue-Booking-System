@@ -1,0 +1,164 @@
+{% extends 'myapp/base.html' %} {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Mazyar">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static%}
+    <link  rel="stylesheet" href="{%static 'style.css'%}">
+    <title>Invoice Management Dashboard</title>
+</head>
+
+<body class="font-montserrat ">
+    <div class="flex min-h-screen 2xl:max-w-7xl 2xl:mx-auto 2xl:border-x-2 2xl:border-indigo-50 ">
+      
+
+        <main class="bg-indigo-50/60 w-full py-10 px-3 sm:px-10">
+
+            <!-- Nav -->
+            <nav class="text-lg flex items-center justify-between content-center ">
+                <div class=" font-semibold text-xl text-gray-800 flex space-x-4 items-center">
+                    <a href="#">
+                        <span class="md:hidden">
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
+                            </svg>
+
+                        </span>
+                    </a>
+                    <span>Welcome {{user.username}} !!</span>
+                </div>
+
+                
+            </nav> <!-- /Nav -->
+
+            <!-- Filters Section -->
+            <section>
+                <div class="bg-rose-100/70 mt-12  rounded-xl px-5 sm:px-10  pt-8 pb-4 relative xl:bg-[url('../images/invoice.png')] bg-no-repeat bg-right bg-contain ">
+                    <div class="text-rose-400 font-semibold text-lg">ALL VENUES</div>
+
+
+                    <div class="mt-6 grid grid-cols-1 xs:grid-cols-2 gap-y-6  gap-x-6 md:flex md:space-x-6 md:gap-x-0 ">
+                       
+                        <a class=" flex items-center space-x-2 py-1  font-semibold  border-r-2 border-r-indigo-700 pr-20 " href="{% url 'seeICR' %}">
+                            <svg class="h-5 w-5 stroke-indigo-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                
+                            </svg>
+                            <span>ICR</span>
+                        </a>
+
+                        
+
+                        <a class=" flex items-center space-x-2 py-1  font-semibold  border-r-2 border-r-indigo-700 pr-20 " href="{% url 'seeAuditorium' %}">
+                            <svg class="h-5 w-5 stroke-indigo-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                
+                            </svg>
+                            <span>Auditorium</span>
+                        </a>
+
+
+                        <a class=" flex items-center space-x-2 py-1  font-semibold  border-r-2 border-r-indigo-700 pr-20 " href="{% url 'seeAnisur' %}">
+                            <svg class="h-5 w-5 stroke-indigo-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                
+                            </svg>
+                            <span>Anisul Haque Seminar</span>
+                        </a>
+
+                        <a class=" flex items-center space-x-2 py-1  font-semibold  border-r-2 border-r-indigo-700 pr-20 " href="{% url 'seeBonomaya' %}">
+                            <svg class="h-5 w-5 stroke-indigo-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                
+                            </svg>
+                            <span>Bonomaya</span>
+                        </a>
+                        
+                    </div>
+
+                    <div class="mt-5 text-gray-500 text-sm ">
+                        * This data has been shown according to your given information
+                    </div>
+                </div>
+
+            </section> <!-- /Filters Section -->
+
+
+            <!-- Invoice List Table -->
+            <section class="">
+                <!-- Table Header -->
+                {% comment %} <div class="invoice-table-row invoice-table-header bg-white mt-10 rounded-xl px-10  py-4 flex items-center gap-x-3 text-sm font-semibold  text-gray-600">
+                    <div class="text-left"> ID</div>
+                    <div class="text-left">USER NAME</div>
+                    <div class="text-center">Venue</div>
+                    <div class="text-center ">FROM DATE</div>
+                    <div class="text-right">To Date</div>
+                    <div class="flex-1  text-center">Status</div>
+                </div><!-- /Table Header -->
+
+                
+                <!-- Table Body -->
+                <div class="bg-white mt-5 rounded-xl text-sm  text-gray-500 divide-y divide-indigo-50 overflow-x-auto  shadow">
+                    {% for row in book_list %}
+                    <tr>
+                        <td class="px-2 py-1 align-middle">{{row.id}}</td>
+                        <td class="px-2 py-1 align-middle">{{row.name}}</td>
+                        <td class="px-2 py-1 align-middle">{{row.venue_name}}</td>
+                        
+                        <td class="px-2 py-1 align-middle">{{row.form_date}}</td>
+                        <td class="px-2 py-1 align-middle">{{row.to_date}}</td>
+                     
+                        
+                        <td class="px-2 py-1 align-middle">{{row.status}}</td>
+                    </tr>
+                    {% endfor %}
+
+                    
+                    
+
+                </div><!-- /Table Body --> {% endcomment %}
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr class="bg-gradient bg-primary text-light">
+                                    <th class="p-1 text-center">BOOKING ID</th>
+                                    <th class="p-1 text-center">USER NAME</th>
+                                    <th class="p-1 text-center">VENUE NAME</th>
+                                    
+                                    <th class="p-1 text-center">USER</th>
+                                    
+                                    <th class="p-1 text-center">FROM DATE</th>
+                                    <th class="p-1 text-center">TO DATE</th>
+                                    
+                                    <th class="p-1 text-center">STATUS</th>
+                                </tr>
+                            </thead>
+        
+                            {% for row in book_list %}
+                            <tr>
+                                <td class="px-2 py-1 align-middle">{{row.id}}</td>
+                                <td class="px-2 py-1 align-middle">{{row.name}}</td>
+                                <td class="px-2 py-1 align-middle">{{row.venue_name}}</td>
+                                <td class="px-2 py-1 align-middle">{{row.staff_data}}</td>
+                                <td class="px-2 py-1 align-middle">{{row.form_date}}</td>
+                                <td class="px-2 py-1 align-middle">{{row.to_date}}</td>
+                             
+                                
+                                <td class="px-2 py-1 align-middle">{{row.status}}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <!-- /Invoice List Table -->
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>{% endblock %}

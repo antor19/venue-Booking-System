@@ -1,0 +1,75 @@
+{% extends 'myapp/base.html' %} {% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+            <div class="card rounded-0">
+                <div class="card-header">
+                    <div class="card-title h3 mb-0">Find Venue</div>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <form action="{% url 'findvenue' %}" method="post" id="find-form">
+                            {% csrf_token %}
+                            {% comment %} <div class="mb-3">
+                                <label for="source" class="control-labell">VENUE NAME</label>
+                                <input name='source' class="form-control rounded-0" type="text" id="source" value="{% if data.source %}{{data.source}}{% endif %}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="destination" class="control-labell">Vano full Form</label>
+                                <input name='destination' id="destination" class="form-control rounded-0" type="text" value="{% if data.destination %}{{data.destination}}{% endif %}" required>
+                            </div> {% endcomment %}
+                            <div class="mb-3">
+                                <label for="exampleFormControlSelect1">Venue Name</label>
+                                <select class="form-control" id="venueid" name="venueid" required>
+                                    <option value=''>--Select Venue--</option>
+                                    {% for venue in venue_list %}
+                                        <option value="{{venue.id}}">{{venue.venue_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class='mb-3'>
+                                <label for="date" class="control-labell">Month</label>
+                                <select id='month' name="month" class="form-control" required>
+                                    <option value=''>--Select Month--</option>
+                                    <option value='01'>Janaury</option>
+                                    <option value='02'>February</option>
+                                    <option value='03'>March</option>
+                                    <option value='04'>April</option>
+                                    <option value='05'>May</option>
+                                    <option value='06'>June</option>
+                                    <option value='07'>July</option>
+                                    <option value='08'>August</option>
+                                    <option value='09'>September</option>
+                                    <option value='10'>October</option>
+                                    <option value='11'>November</option>
+                                    <option value='12'>December</option>
+                                    </select> 
+                            </div>
+                            {% comment %} <div class="mb-3">
+                                <label for="date" class="control-labell">FROM DATE</label>
+                                <input name='form_date' id="form_date" class="form-control rounded-0" type="date" value="{% if data.form_date %}{{data.form_date}}{% endif %}" required>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="control-labell">To Date</label>
+                                <input name='to_date' id="to_date" class="form-control rounded-0" type="date" value="{% if data.to_date %}{{data.to_date}}{% endif %}">
+
+                            </div> {% endcomment %}
+                            {% if error %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                            {% endif %}
+
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-sm rounded-0 btn-primary w-100" form="find-form">Find</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

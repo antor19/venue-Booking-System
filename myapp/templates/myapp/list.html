@@ -1,0 +1,87 @@
+{% extends 'myapp/base.html' %} {% block content %}
+<div class="container py-5">
+    <h3>{{msg}}</h3>
+    <div class="card rounded-0 mb-5">
+        {% if venue_list %}
+            <div class="card-header">
+                <div class="card-title h3 mb-0">Booked Venues</div>
+            </div>
+            <div class="card-body">
+                <div class="container-fluid">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr class="bg-gradient bg-primary text-light">
+                                <th class="p-1 text-center">VENUE ID</th>
+                                <th class="p-1 text-center">VENUE NAME</th>
+                                <th class="p-1 text-center">FROM DATE</th>
+                                <th class="p-1 text-center">TO DATE</th>
+                                
+                            </tr>
+                        </thead>
+
+                        {% for row in venue_list %}
+                        <tr>
+                            <td class="px-2 py-1 align-middle">{{row.venueid.id }}</td>
+                            <td class="px-2 py-1 align-middle">{{row.venue_name}}</td>
+                            <td class="px-2 py-1 align-middle">{{row.form_date}}</td>
+                            <td class="px-2 py-1 align-middle">{{row.to_date}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        {% else %}
+                <h1>{{month}} month is available for {{venue_data.venue_name}} booking.</h1>
+        {% endif%}
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+            <div class="card rounded-0">
+                <div class="card-header">
+                    <div class="card-title h3 mb-3">Booking Form </div>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <form action="{% url 'bookings' %}" method="post" id="book-form">
+                            <input hidden value={{venue_data.id}} name='venue_id' id="venue_id">
+                           
+                            {% csrf_token %}
+                            <div class='mb-3'>
+                                <label for="staff_data" class="control-labell">I am </label>
+                                <select id='staff_data' name="staff_data" class="form-control" required>
+                                    <option value=''>--Select --</option>
+                                    <option value='Teacher'>Teacher</option>
+                                    <option value='Student'>Student</option>
+                                    <option value='Club'>Club</option>
+                                   
+                                </select> 
+                            </div>
+                          <div class="mb-3">
+                                <label for="date" class="control-labell">From Date</label>
+                                <input name='form_date' id="form_date" class="form-control rounded-0" type="date" value="{% if data.form_date %}{{data.form_date}}{% endif %}" required>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="control-labell">To Date</label>
+                                <input name='to_date' id="to_date" class="form-control rounded-0" type="date" value="{% if data.to_date %}{{data.to_date}}{% endif %}">
+
+                            </div>
+                            {% if error %}
+                            <div class="alert alert-danger">
+                                {{error}}
+                            </div>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-sm rounded-0 btn-primary w-100" form="book-form">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
